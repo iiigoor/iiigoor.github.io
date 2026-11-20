@@ -7,7 +7,7 @@
     <!-- Script de Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
-    <!-- ID del cliente OAuth -->
+    <!-- ID del client OAuth -->
     <meta name="google-signin-client_id" content="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com">
 
 </head>
@@ -16,22 +16,37 @@
     <h1>PT 2.5 - GOOGLE SIGN IN</h1>
     <p>Pàgina preparada per afegir el OAuth 2.</p>
 
-    <!-- Div d'inicialització de Google -->
+    <!-- Div d'inicialitzacio de Google -->
     <div
         id="g_id_onload"
         data-client_id="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com"
         data-callback="onSignIn">
     </div>
 
-    <!-- Botó d'inici de sessió -->
+    <!-- Boto d'inici de sessio -->
     <div class="g_id_signin"
          data-type="standard">
     </div>
 
-    <!-- Botó de desconnexió -->
+    <!-- Boto de desconnexio -->
     <button id="boto-sortir"
             style="display:none;"
             onclick="signOut()">Desconnectar</button>
+
+    <!-- Funcions JavaScript -->
+    <script>
+
+        function onSignIn() {
+            document.getElementById('boto-sortir').style.display = 'block';
+            document.querySelector('.g_id_signin').style.display = 'none';
+        }
+
+        function signOut() {
+            document.getElementById('boto-sortir').style.display = 'none';
+            document.querySelector('.g_id_signin').style.display = 'block';
+        }
+
+    </script>
 
 </body>
 </html>
