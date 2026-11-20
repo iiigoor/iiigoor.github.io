@@ -4,18 +4,29 @@
     <meta charset="UTF-8">
     <title>PT 2.5 - GOOGLE SIGN IN</title>
 
+    <!-- Script de Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
+    <!-- ID del cliente OAuth -->
     <meta name="google-signin-client_id" content="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com">
+
 </head>
 <body>
+
     <h1>PT 2.5 - GOOGLE SIGN IN</h1>
     <p>Pàgina preparada per afegir el OAuth 2.</p>
 
+    <!-- Div d'inicialització de Google -->
     <div
         id="g_id_onload"
         data-client_id="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com"
         data-callback="onSignIn">
     </div>
+
+    <!-- Botón de inicio de sesión -->
+    <div class="g_id_signin"
+         data-type="standard">
+    </div>
+
 </body>
 </html>
