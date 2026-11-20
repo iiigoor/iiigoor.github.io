@@ -1,47 +1,333 @@
+
 <!DOCTYPE html>
 <html lang="ca">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PT 2.5 - GOOGLE SIGN IN</title>
 
-    <!-- Script de Google Sign-In -->
+    <!-- Google Sign-In -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <!-- ID del client OAuth -->
     <meta name="google-signin-client_id" content="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com">
 
+    <!-- Estils CSS -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #f4f3ff;
+            background:
+                radial-gradient(circle at 15% 20%, #302568 0%, transparent 35%),
+                radial-gradient(circle at 85% 80%, #153d69 0%, transparent 35%),
+                #090b18;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 65px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo {
+            width: 43px;
+            height: 43px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #9066ff, #438cff);
+            font-size: 23px;
+        }
+
+        .badge {
+            padding: 9px 16px;
+            border: 1px solid #51417b;
+            border-radius: 30px;
+            color: #c5b4ff;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .eyebrow {
+            color: #a78bfa;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            margin-bottom: 22px;
+        }
+
+        h1 {
+            font-size: clamp(42px, 6vw, 68px);
+            line-height: 1.08;
+            margin-bottom: 25px;
+            background: linear-gradient(100deg, #ffffff, #b9a4ff, #78baff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .description {
+            color: #a6abc4;
+            font-size: 17px;
+            line-height: 1.8;
+            max-width: 510px;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 35px;
+        }
+
+        .feature {
+            border: 1px solid #343653;
+            background: #15182b;
+            color: #c9c7e3;
+            padding: 11px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .login-card {
+            padding: 36px;
+            border: 1px solid #45416b;
+            border-radius: 25px;
+            background: rgba(24, 26, 49, 0.86);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+        }
+
+        .card-icon {
+            width: 62px;
+            height: 62px;
+            border-radius: 19px;
+            background: linear-gradient(135deg, #8159ec, #398fe9);
+            display: grid;
+            place-items: center;
+            font-size: 28px;
+            margin-bottom: 25px;
+        }
+
+        .login-card h2 {
+            font-size: 25px;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .login-card p {
+            color: #a6abc4;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .login-label {
+            display: block;
+            color: #aaa8c5;
+            font-size: 12px;
+            margin-bottom: 14px;
+            letter-spacing: 1px;
+        }
+
+        .g_id_signin {
+            margin: 15px 0;
+            min-height: 44px;
+        }
+
+        #missatge-benvinguda {
+            color: #d7c8ff;
+            font-size: 20px;
+            line-height: 1.5;
+            margin: 18px 0;
+        }
+
+        #boto-sortir {
+            display: none;
+            width: 100%;
+            margin-top: 17px;
+            padding: 14px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(100deg, #8258ee, #368de9);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        #boto-sortir:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(110, 95, 240, 0.35);
+        }
+
+        .security {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #343653;
+            color: #8589aa;
+            font-size: 11px;
+        }
+
+        footer {
+            margin-top: 65px;
+            text-align: center;
+            color: #686e91;
+            font-size: 12px;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 22px;
+            }
+
+            .topbar {
+                margin-bottom: 45px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .login-card {
+                padding: 27px;
+            }
+
+            footer {
+                margin-top: 40px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <h1>PT 2.5 - GOOGLE SIGN IN</h1>
-    <p>Pàgina preparada per afegir el OAuth 2.</p>
+    <main class="container">
 
-    <!-- Missatge de benvinguda -->
-    <h2 id="missatge-benvinguda" style="display:none;">
-        Missatge de benvinguda
-    </h2>
+        <header class="topbar">
+            <div class="brand">
+                <div class="logo">✦</div>
+                <span>GOOGLE AUTH</span>
+            </div>
 
-    <!-- Div d'inicialització de Google -->
-    <div
-        id="g_id_onload"
-        data-client_id="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com"
-        data-callback="onSignIn">
-    </div>
+            <span class="badge">OAUTH 2.0 · SECURE LOGIN</span>
+        </header>
 
-    <!-- Boto d'inici de sessio -->
-    <div class="g_id_signin"
-         data-type="standard">
-    </div>
+        <section class="hero">
 
-    <!-- Boto de desconnexio -->
-    <button id="boto-sortir"
-            style="display:none;"
-            onclick="signOut()">Desconnectar</button>
+            <div class="hero-content">
+                <div class="eyebrow">IDENTITAT DIGITAL</div>
+
+                <h1>Benvingut al futur de l'autenticació.</h1>
+
+                <p class="description">
+                    Una experiència d'inici de sessió moderna,
+                    ràpida i segura mitjançant el teu compte
+                    de Google.
+                </p>
+
+                <div class="features">
+                    <div class="feature">✦ Google Identity</div>
+                    <div class="feature">◈ OAuth 2.0</div>
+                    <div class="feature">✓ Accés segur</div>
+                </div>
+            </div>
+
+            <div class="login-card">
+
+                <div class="card-icon">✦</div>
+
+                <span class="login-label">ÀREA D'USUARI</span>
+
+                <h2>Inicia la sessió</h2>
+
+                <p>
+                    Identifica't amb Google per accedir
+                    a la teva experiència personalitzada.
+                </p>
+
+                <!-- Missatge de benvinguda -->
+                <h2 id="missatge-benvinguda" style="display:none;">
+                    Missatge de benvinguda
+                </h2>
+
+                <!-- Inicialització de Google -->
+                <div
+                    id="g_id_onload"
+                    data-client_id="850656372334-euplu72tb3m8p2b09j8uavsbpq41q4ol.apps.googleusercontent.com"
+                    data-callback="onSignIn">
+                </div>
+
+                <!-- Botó de Google -->
+                <div class="g_id_signin"
+                     data-type="standard">
+                </div>
+
+                <!-- Botó de desconnexió -->
+                <button id="boto-sortir"
+                        onclick="signOut()">
+                    Desconnectar
+                </button>
+
+                <div class="security">
+                    <span>🔒</span>
+                    <span>Autenticació gestionada per Google</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <footer>
+            PT 2.5 · GOOGLE SIGN IN · PROJECTE D'AUTENTICACIÓ
+        </footer>
+
+    </main>
 
     <!-- Funcions JavaScript -->
     <script>
 
         function onSignIn(response) {
+
             var id_token = response.credential;
 
             console.log("ID Token: " + id_token);
@@ -55,12 +341,16 @@
             document.getElementById('missatge-benvinguda').style.display = 'block';
 
             document.getElementById('boto-sortir').style.display = 'block';
+
             document.querySelector('.g_id_signin').style.display = 'none';
         }
 
         function signOut() {
+
             document.getElementById('boto-sortir').style.display = 'none';
+
             document.querySelector('.g_id_signin').style.display = 'block';
+
             document.getElementById('missatge-benvinguda').style.display = 'none';
         }
 
